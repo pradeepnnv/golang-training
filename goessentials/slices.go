@@ -23,6 +23,7 @@ func main() {
 	for i, name := range loons {
 		fmt.Printf("%s at %d\n", name, i)
 	}
+	loons = append(loons, "lastelement")
 	//Double valued range, ignoring index
 	for _, name := range loons {
 		fmt.Println(name)
