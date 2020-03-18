@@ -22,17 +22,18 @@ To Catch me the wind
 
 	wordlist := strings.Fields(text)
 	for _, eachword := range wordlist {
-		fmt.Println(strings.ToLower(eachword))
-		eachword = strings.ToLower(eachword)
-		count := 0
-		_, ok := wordcount[eachword]
-		if ok {
-			count = wordcount[eachword]
-			count++
-			wordcount[eachword] = count
-		} else {
-			wordcount[eachword] = 1
-		}
+		// fmt.Println(strings.ToLower(eachword))
+		// eachword = strings.ToLower(eachword)
+		// count := 0
+		// _, ok := wordcount[eachword]
+		// if ok {
+		// 	count = wordcount[eachword]
+		// 	count++
+		// 	wordcount[eachword] = count
+		// } else {
+		// 	wordcount[eachword] = 1
+		// }
+		wordcount[strings.ToLower(eachword)]++
 	}
 	fmt.Println(wordcount)
 }
