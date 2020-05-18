@@ -1,4 +1,4 @@
-//This prints fizz if a number is divisible by 3 & buzz if it's divisible by 10
+// Print fizz for numbers divisible by 3, buzz for numbers divisible by 5 and fizzbuzz if they are divisible by 3 & 5
 
 package main
 
@@ -7,16 +7,16 @@ import (
 )
 
 func main() {
-	i := 0
-	for i = 1; i <= 20; i++ {
+	for i := 1; i <= 20; i++ {
 		if i%3 == 0 && i%5 == 0 {
-			fmt.Println("fizzbuzz")
+			fmt.Printf("fizz buzz")
 		} else if i%3 == 0 {
-			fmt.Println("fizz")
+			fmt.Printf("fizz")
 		} else if i%5 == 0 {
-			fmt.Println("buzz")
+			fmt.Printf("buzz")
 		} else {
-			fmt.Println(i)
+			fmt.Printf("%v", i)
 		}
+		fmt.Println()
 	}
 }
