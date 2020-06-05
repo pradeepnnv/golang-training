@@ -13,7 +13,7 @@ func main() {
 	for _, v := range nums {
 
 		if v > x {
-			x  = v
+			x = v
 		}
 	}
 	fmt.Println(x)

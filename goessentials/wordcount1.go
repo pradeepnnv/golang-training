@@ -20,7 +20,7 @@ To catch me the wind`
 	wc := map[string]int{}
 	fmt.Println(wc)
 	for _, word := range words {
-                wc[strings.ToLower(word)]++
+		wc[strings.ToLower(word)]++
 	}
 	fmt.Println(wc)
 
