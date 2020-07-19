@@ -4,17 +4,22 @@ package main
 import (
 	"fmt"
 	"runtime"
-	"time"
+	"sync"
 )
 
+var wg sync.WaitGroup
+
 func main() {
-	foo()
-	bar()
-	fmt.Println("OS:\t", runtime.GOOS)
-	fmt.Println("ARCH:\t", runtime.GOARCH)
-	fmt.Println("CPUs:\t", runtime.NumCPU())
 	fmt.Println("GORoutines:\t", runtime.NumGoroutine())
-	time.Sleep(time.Second)
+	wg.Add(1)
+	// time.Sleep(time.Second)
+	go foo()
+	fmt.Println("GORoutines:\t", runtime.NumGoroutine())
+	// wg.Add()
+	go bar()
+	fmt.Println("GORoutines:\t", runtime.NumGoroutine())
+	wg.Wait()
+	fmt.Println("GORoutines:\t", runtime.NumGoroutine())
 }
 
 func foo() {
@@ -22,10 +27,12 @@ func foo() {
 	for i := 0; i < 10; i++ {
 		fmt.Println("foo:", i)
 	}
+	wg.Done()
 }
 
 func bar() {
 	for i := 0; i < 10; i++ {
 		fmt.Println("bar:", i)
 	}
+	wg.Done()
 }
