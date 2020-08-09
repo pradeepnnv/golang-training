@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type person []struct {
 	First string `json:"First"`
 	Last  string `json:"Last"`
@@ -7,5 +9,5 @@ type person []struct {
 }
 
 func main() {
-	jsonstr := ""
+	fmt.Println("hello")
 }
