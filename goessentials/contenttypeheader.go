@@ -3,24 +3,36 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
+	"time"
 )
 
-func main() {
-	contentType("https://www.linked.com")
-	contentType("https://api.palestra.cccis.com")
-}
-
-func contentType(url string) {
+func getContentType(url string, ch chan string) {
 	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Println("Error:", err)
-		return
+		fmt.Fprintf(os.Stderr, "contenttypeheader: %s", err)
 	}
-	defer resp.Body.Close()
-	cType := resp.Header.Get("Content-Type")
-	if cType == "" {
-		fmt.Println("No Content Type header in response")
+	// fmt.Println(resp.Header.Get("Content-Type"))
+	// return resp.Header.Get("Content-Type")
+	ch <- resp.Header.Get("Content-Type")
+}
+
+func main() {
+	start := time.Now()
+	urls := []string{
+		"https://www.google.com",
+		"https://api.github.com",
+		"https://api.twitter.com",
+		"https://developer.twitter.com",
+		"https://www.linkedin.com",
+		"https://www.elastic.co",
+		"https://prometheus.io",
+		"https://home.pearsonvue.com/",
 	}
-	fmt.Printf(`Content Type of the URL "%s" is "%s"
-`, url, cType)
+	ch := make(chan string)
+	for _, url := range urls {
+		go getContentType(url, ch)
+		fmt.Println(<-ch)
+	}
+	fmt.Println("Time taken: ", time.Now().Sub(start))
 }
