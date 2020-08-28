@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// User contains count of public repos of a user and his user login
 type User struct {
 	PublicRepos int    `json:"public_repos"`
 	Name        string `json:"login"`
