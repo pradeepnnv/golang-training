@@ -41,15 +41,16 @@ func main() {
 
 func getDefaultReviewerCount(repo string, ch chan<- string) {
 
-	baseURL := ""
 	urlPath := "/default-reviewers"
 	client := &http.Client{}
 
-	if len(os.Args) < 2 {
-		fmt.Println("AuthValue parameter is missing")
+	if len(os.Args) < 3 {
+		fmt.Println("AuthValue or BaseURL parameters are missing")
+		fmt.Println("Usage: run main.go AuthValue BaseURL")
 		os.Exit(1)
 	}
 	authValue := os.Args[1]
+	baseURL := os.Args[2]
 	url := baseURL + repo + urlPath
 
 	req, err := http.NewRequest("GET", url, nil)
@@ -59,15 +60,17 @@ func getDefaultReviewerCount(repo string, ch chan<- string) {
 		fmt.Println(err)
 	}
 	defer resp.Body.Close()
-	// body, err := ioutil.ReadAll(resp.Body)
 
-	// fmt.Println(string(body))
+	if resp.StatusCode != 200 {
+		ch <- fmt.Sprintf("Got an invalid response code of %d while processing the repo %s. Please verify.\n", resp.StatusCode, repo)
+		return
+	}
+
 	reviewerCount := &DefaultReviewerCount{}
 	dec := json.NewDecoder(resp.Body)
 	if err := dec.Decode(reviewerCount); err != nil {
 		fmt.Fprintf(os.Stderr, "bitbucketapiexample: %s", err)
 	}
-	// fmt.Println(reviewerCount.Size)
 	ch <- fmt.Sprintf("Count of default reviewers for the repo %s is %d\n", repo, reviewerCount.Size)
 
 }
