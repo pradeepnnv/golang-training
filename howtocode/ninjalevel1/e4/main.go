@@ -2,13 +2,9 @@ package main
 
 import "fmt"
 
-type mytype int
-
-var x mytype
-
 func main() {
-	fmt.Println(x)
-	fmt.Printf("%T\n", x)
+	type mytype int
+	var x mytype
 	x = 42
-	fmt.Printf("%T", x)
+	fmt.Printf("Variable x is of type %T and value is %d", x, x)
 }

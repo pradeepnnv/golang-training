@@ -2,16 +2,10 @@ package main
 
 import "fmt"
 
-const x = 42
-const y int = 94
-
-const (
-	a        = 42
-	b string = "const string"
-)
-
 func main() {
-	fmt.Println(x)
-	fmt.Println(y)
-	fmt.Println(a, b)
+	const x = 22
+	const y string = "hello"
+
+	fmt.Printf("Type of x is %T and value is %d\n", x, x)
+	fmt.Printf("Type of Y is %T and value is %s\n", y, y)
 }

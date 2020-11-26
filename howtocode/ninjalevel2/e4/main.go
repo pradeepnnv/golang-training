@@ -3,10 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	a := 2334
-	fmt.Printf("%d\t%b\t%x\n", a, a, a)
-	b := a << 1
-	fmt.Printf("%d\t%b\t%x\n", b, b, b)
-	c := a >> 1
-	fmt.Printf("%d\t%b\t%x", c, c, c)
+	x := 42
+	fmt.Printf("%d\t%x\t%b\n", x, x, x)
+	x = x << 1
+	fmt.Printf("%d\t%x\t%b", x, x, x)
 }

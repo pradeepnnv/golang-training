@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 const (
-	a = 2017 + iota
-	b = 2017 + iota
-	c = 2017 + iota
-	d = 2017 + iota
+	a = 2020 + iota
+	b = 2020 + iota
+	c = 2020 + iota
+	d = 2020 + iota
 )
 
 func main() {

@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	var str string
-	str = `this is a sample string.\n
-				this is interesting`
-	fmt.Println(str)
-
+	x := `
+	This is a raw literal string.
+	So this can span multiple lines.
+	This can even have ßß∂∑ˆ˙∆©¬¬˜œ∑ø¬¬¬åß∑∑™£££££££££™¡`
+	fmt.Println(x)
 }
