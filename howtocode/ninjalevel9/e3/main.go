@@ -2,26 +2,22 @@ package main
 
 import (
 	"fmt"
-	"runtime"
 	"sync"
 )
 
-func main() {
-	var wg sync.WaitGroup
-	inc := 0
-	gs := 100
-	wg.Add(gs)
+var wg sync.WaitGroup
 
-	for i := 0; i < gs; i++ {
+func main() {
+	i := 0
+	wg.Add(5)
+	for x := 0; x < 5; x++ {
 		go func() {
-			defer wg.Done()
-			v := inc
-			runtime.Gosched()
-			v++
-			inc = v
-			fmt.Println(inc)
+			i++
+			fmt.Println("Value of i in iteration " , x  i)
+			wg.Done()
+
 		}()
 	}
 	wg.Wait()
-	fmt.Println("Final value of inc is :", inc)
+	fmt.Println(i)
 }

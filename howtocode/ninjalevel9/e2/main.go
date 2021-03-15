@@ -2,32 +2,26 @@ package main
 
 import "fmt"
 
-func main() {
-
-	var h human
-	p := person{
-		age:  25,
-		name: "Moriarty Holmes",
-	}
-	h = p
-	fmt.Println(h.speak())
-	saySomething(h)
-
-}
-
 type person struct {
-	age  int
 	name string
 }
 
-func (p person) speak() string {
-	return fmt.Sprintf("My name is %s and I'm %d years old. Spiffing!!!", p.name, p.age)
+func (p *person) speak() {
+	fmt.Println("my name is :" + p.name)
 }
 
 type human interface {
-	speak() string
+	speak()
 }
 
-func saySomething(h human) {
-	fmt.Println(h.speak())
+func (p person) saySomething(h human) {
+	h.speak()
+}
+
+func main() {
+	p := person{
+		"thing1",
+	}
+	// p.speak()
+	p.saySomething(&p)
 }

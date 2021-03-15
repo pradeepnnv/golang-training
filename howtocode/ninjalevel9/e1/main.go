@@ -2,25 +2,19 @@ package main
 
 import (
 	"fmt"
-	"runtime"
 	"sync"
 )
 
+var wg sync.WaitGroup
+
 func main() {
-	var wg sync.WaitGroup
 	wg.Add(2)
-	fmt.Println("Number of goroutines:", runtime.NumGoroutine())
-	go func() {
-		defer wg.Done()
-		fmt.Println("This is me printing from a goroutine")
-	}()
-
-	go func() {
-		defer wg.Done()
-		fmt.Println("This is me printing from a goroutine again!!!")
-	}()
-
-	fmt.Println("Number of goroutines:", runtime.NumGoroutine())
+	go printSomething()
+	go printSomething()
 	wg.Wait()
-	fmt.Println("Number of goroutines:", runtime.NumGoroutine())
+}
+
+func printSomething() {
+	fmt.Println("Printing something")
+	wg.Done()
 }
