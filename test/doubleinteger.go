@@ -3,7 +3,7 @@ package mytest
 import "fmt"
 
 func main() {
-	fmt.Println(doubleTheInteger(2))
+	fmt.Println(doubleTheInteger(4))
 }
 
 func doubleTheInteger(i int) int {
