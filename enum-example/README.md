@@ -1,1 +1,0 @@
-Reference: https://marcofranssen.nl/how-to-do-enums-in-go
