@@ -6,6 +6,8 @@ import "fmt"
 // 	fmt.Println(Hello())
 // }
 
+const englishHelloPrefix = "Hello "
+
 func Hello(name string) string {
-	return fmt.Sprintf("Hello %s!!", name)
+	return fmt.Sprintf("%s%s!!", englishHelloPrefix, name)
 }
