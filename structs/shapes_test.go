@@ -29,19 +29,25 @@ import (
 
 func TestArea(t *testing.T) {
 
-	checkArea := func(t testing.TB, shape Shape, want float64) {
-		t.Helper()
-		got := shape.Area()
-		if got != want {
-			t.Errorf("got %g want %g", got, want)
-		}
+	areaTests := []struct {
+		name    string
+		shape   Shape
+		hasArea float64
+	}{
+		{name: "Rectangle", shape: Rectangle{Width: 12, Length: 6}, hasArea: 72.0},
+		{name: "Circle", shape: Circle{10}, hasArea: 314.1592653589793},
+		{name: "Triangle", shape: Triangle{10.0, 2.0}, hasArea: 10},
 	}
-
-	t.Run("calculate area of a rectangle", func(t *testing.T) {
-		checkArea(t, Rectangle{10.0, 2.0}, 20.0)
-	})
-
-	t.Run("calculate area of a circle", func(t *testing.T) {
-		checkArea(t, Circle{1}, 3.141592653589793)
-	})
+	for _, tt := range areaTests {
+		// got := tt.shape.Area()
+		// if got != tt.hasArea {
+		// 	t.Errorf("%#v got %g but want %g", tt.shape, got, tt.hasArea)
+		// }
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.shape.Area()
+			if got != tt.hasArea {
+				t.Errorf("%#v got %g but want %g", tt.shape, got, tt.hasArea)
+			}
+		})
+	}
 }
