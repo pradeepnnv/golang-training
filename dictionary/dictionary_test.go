@@ -2,6 +2,46 @@ package dictionary
 
 import "testing"
 
+func TestDelete(t *testing.T) {
+	t.Run("delete existing word", func(t *testing.T) {
+		word := "test"
+		def := "definition"
+		dict := Dictionary{word: def}
+		err := dict.Delete(word)
+		assertError(t, err, nil)
+		_, err = dict.Search(word)
+		assertError(t, err, ErrNotFound)
+	})
+	t.Run("delete non available word", func(t *testing.T) {
+		word := "test"
+		dict := Dictionary{}
+		err := dict.Delete(word)
+		assertError(t, err, ErrWordDoesNotExist)
+		_, err = dict.Search(word)
+		assertError(t, err, ErrNotFound)
+	})
+}
+
+func TestUpdate(t *testing.T) {
+
+	t.Run("update existing word", func(t *testing.T) {
+		word := "test"
+		definition := "this is a test"
+		dict := Dictionary{word: definition}
+		newDefinition := "this is an updated definition"
+		dict.Update(word, newDefinition)
+		assertDefinition(t, dict, word, newDefinition)
+	})
+	t.Run("Update new word", func(t *testing.T) {
+		word := "test"
+		definition := "definition"
+		dict := Dictionary{}
+		err := dict.Update(word, definition)
+		assertError(t, err, ErrWordDoesNotExist)
+
+	})
+}
+
 func TestAdd(t *testing.T) {
 	d := Dictionary{}
 	t.Run("Add a word", func(t *testing.T) {
