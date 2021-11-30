@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"dependencyinjection"
+	replace "dependencyinjection" ==> ./dependencyinjection /// Source code in /Users/ch-pnumb1-mbp/go/src/github.com/pradeepnnv/dependencyinjection
 )
 
 func main() {
@@ -13,5 +13,5 @@ func main() {
 }
 
 func MyGreetHandler(w http.ResponseWriter, r *http.Request) {
-	dependencyinjection.Greet(w, "World")
+	dependencyinjection.Greet(w, "Pen")
 }

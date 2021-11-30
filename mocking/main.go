@@ -1,8 +1,9 @@
 package main
 
 import (
-	"countdown"
 	"os"
+
+	"github.com/pradeepnnv/countdown"
 )
 
 func main() {
