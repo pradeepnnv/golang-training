@@ -1,1 +1,0 @@
-replace github.com/pradeepnnv/countdown ==> ../countdown
